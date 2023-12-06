@@ -1,1 +1,6 @@
 __pycache__
+# Test suite
+*.tar
+check_dump.py
+test_lab4_ext.py
+dump_block.py

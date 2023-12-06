@@ -53,6 +53,7 @@ typedef int32_t i32;
 #define EXT2_OS_LINUX 0
 #define EXT2_VALID_FS 1
 #define EXT2_ERRORS_CONTINUE 1
+#define SIGNEDINT16_MAX 32767
 
 #define EXT2_S_IFSOCK 0xC000
 #define EXT2_S_IFLNK  0xA000
@@ -217,7 +218,7 @@ void write_superblock(int fd) {
 	superblock.s_mtime = 0;				/* Mount time */
 	superblock.s_wtime = current_time;	/* Write time */
 	superblock.s_mnt_count         = 0; /* Number of times mounted so far */
-	superblock.s_max_mnt_count     = INT16_MAX; /* Make this unlimited */
+	superblock.s_max_mnt_count     = SIGNEDINT16_MAX; /* Make this unlimited */
 	superblock.s_magic = EXT2_SUPER_MAGIC; /* ext2 Signature */
 	superblock.s_state             = EXT2_VALID_FS; /* File system is clean */
 	superblock.s_errors            = EXT2_ERRORS_CONTINUE; /* Ignore the error (continue on) */
