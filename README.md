@@ -12,6 +12,8 @@ In this lab, I successfully implemented the following functions.
     <li>write_hello_world_file_block</li>
 </ul>
 
+These functions in addition to the given skeleton code created a 1MiB ext2 file system with 2 directories, 1 regular file, and 1 symbolic link.
+
 ## Building
 
 To build this program, run the command
