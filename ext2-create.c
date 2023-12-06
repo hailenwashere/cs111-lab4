@@ -266,9 +266,9 @@ void write_block_group_descriptor_table(int fd) {
 
 	// TODO It's all yours
 	// TODO finish the block group descriptor number setting
-	block_group_descriptor.bg_block_bitmap = 3;
-	block_group_descriptor.bg_inode_bitmap = 4;
-	block_group_descriptor.bg_inode_table = 5;
+	block_group_descriptor.bg_block_bitmap = BLOCK_BITMAP_BLOCKNO;
+	block_group_descriptor.bg_inode_bitmap = INODE_BITMAP_BLOCKNO;
+	block_group_descriptor.bg_inode_table = INODE_TABLE_BLOCKNO;
 	block_group_descriptor.bg_free_blocks_count = NUM_FREE_BLOCKS;
 	block_group_descriptor.bg_free_inodes_count = NUM_FREE_INODES;
 	block_group_descriptor.bg_used_dirs_count = 2; // for root and lost+found dirs
@@ -503,7 +503,10 @@ void write_hello_world_file_block(int fd)
 		errno_exit("lseek");
 	}
 
-	write(fd, "Hello world\n", 12);
+	if (write(fd, "Hello world\n", 12) != 12)
+	{
+		errno_exit("write");
+	}
 }
 
 int main(int argc, char *argv[]) {
